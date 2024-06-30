@@ -4,10 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tech Goals</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f0f0f0;
+        font-family: "Roboto", sans-serif;
+        background-color: #f5f7fa;
         margin: 0;
         padding: 0;
       }
@@ -16,9 +20,9 @@
         max-width: 800px;
         margin: 20px auto;
         padding: 20px;
-        background-color: #fff;
+        background-color: #ffffff;
         border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
       }
 
       header {
@@ -29,16 +33,18 @@
       .profile-card {
         text-align: center;
         padding: 20px;
-        border: 1px solid #ccc;
+        border: 1px solid #ddd;
         border-radius: 8px;
-        background-color: #f8f8f8;
+        background-color: #fafafa;
       }
 
       .profile-card img {
-        width: 120px;
-        height: 120px;
+        width: 100%;
+        max-width: 512px;
+        height: auto;
         border-radius: 50%;
         margin-bottom: 10px;
+        border: 3px solid #2ecc71;
       }
 
       .profile-card h2 {
@@ -49,7 +55,7 @@
 
       .profile-card p {
         margin-bottom: 10px;
-        color: #666;
+        color: #777;
       }
 
       .profile-card a {
@@ -66,6 +72,53 @@
       .profile-card a:hover {
         background-color: #2980b9;
       }
+
+      .goals {
+        margin-top: 20px;
+      }
+
+      .goals h3 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .goals ul {
+        list-style-type: disc;
+        padding-left: 20px;
+        color: #555;
+      }
+
+      .goals ul li {
+        margin-bottom: 10px;
+      }
+
+      .info {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 1.2rem;
+        color: #555;
+      }
+
+      .links {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .links a {
+        display: inline-block;
+        text-decoration: none;
+        color: #fff;
+        background-color: #2ecc71;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .links a:hover {
+        background-color: #27ae60;
+      }
     </style>
   </head>
   <body>
@@ -75,22 +128,57 @@
       </header>
       <section class="profile-card">
         <img
-          src="https://ca.slack-edge.com/T06MWLGP3D3-U079AV56DUK-9d4b15593010-48"
+          src="https://ca.slack-edge.com/T07466B189M-U079ZEJJ7B5-356c002796bf-512"
           alt="Profile Picture"
-          style="border: 3px solid #3498db"
+          data-testid="slackProfilePicture"
+          width="512"
+          height="512"
         />
-        <h2>Samuel Oluwasegun</h2>
+        <h2 data-testid="slackDisplayName">Samuel Oluwasegun</h2>
         <p style="font-style: italic; color: #555">
           Hello! I'm striving to become a full-stack web developer.
         </p>
-        <p>
-          My goals include mastering Database, Node.js, JavaScript, and learning
-          frameworks like React.
-        </p>
-        <a href="https://sos-tech.netlify.app/" target="_blank">Portfolio</a>
-        <a href="https://github.com/oluwaseg" target="_blank">GitHub</a>
-        <a href="mailto:sammueloluwasegun999@gmail.com">Contact Me</a>
       </section>
+      <section class="goals">
+        <h3>My Goals for the Next 2 Years</h3>
+        <ul>
+          <li>Master Database Management</li>
+          <li>Become proficient in Node.js</li>
+          <li>Enhance JavaScript skills</li>
+          <li>Learn and master React framework</li>
+          <li>Build and deploy full-stack projects</li>
+          <li>Contribute to open source projects</li>
+        </ul>
+      </section>
+      <div class="info">
+        <p>
+          Current Time in UTC:
+          <span id="currentTimeUTC" data-testid="currentTimeUTC"></span>
+        </p>
+        <p>
+          Current Day: <span id="currentDay" data-testid="currentDay"></span>
+        </p>
+      </div>
+      <div class="links">
+        <a href="https://hng.tech/learn" data-testid="hngLink">HNG Learn</a>
+        <a href="https://keyword.dog" data-testid="keywordLink">Keyword Dog</a>
+        <a href="https://scrapeanyweb.site" data-testid="scrapeanywebLink"
+          >Scrape Any Web</a
+        >
+      </div>
     </div>
+    <script>
+      function updateTimeAndDay() {
+        const now = new Date();
+        const utcTime = now.toUTCString().slice(-12, -4);
+        const dayOfWeek = now.toLocaleDateString("en-US", { weekday: "long" });
+
+        document.getElementById("currentTimeUTC").textContent = utcTime;
+        document.getElementById("currentDay").textContent = dayOfWeek;
+      }
+
+      updateTimeAndDay();
+      setInterval(updateTimeAndDay, 60000); // Update every minute
+    </script>
   </body>
 </html>
