@@ -1,11 +1,12 @@
 function updateTimeAndDay() {
-    const now = new Date();
-    const utcTime = now.toUTCString().slice(-12, -4);
-    const dayOfWeek = now.toLocaleDateString("en-US", { weekday: "long" });
+  const now = new Date();
+  const isoString = now.toISOString();
+  const utcTime = isoString.slice(11, 19);
+  const dayOfWeek = now.toLocaleDateString("en-US", { weekday: "long" });
 
-    document.getElementById("currentTimeUTC").textContent = utcTime;
-    document.getElementById("currentDay").textContent = dayOfWeek;
-  }
+  document.getElementById("currentTimeUTC").textContent = utcTime;
+  document.getElementById("currentDay").textContent = dayOfWeek;
+}
 
-  updateTimeAndDay();
-  setInterval(updateTimeAndDay, 60000); // Update every minute
+updateTimeAndDay();
+setInterval(updateTimeAndDay, 60000);
